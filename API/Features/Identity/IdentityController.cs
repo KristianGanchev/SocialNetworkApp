@@ -1,23 +1,24 @@
 ﻿using API.Data.Models;
-using API.Models.Identity.Dtos;
+using API.Features.Identity.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 
-namespace API.Controllers;
+namespace API.Features.Identity;
 
 public class IdentityController : ApiController
 {
     private readonly UserManager<User> userManager;
+    private readonly IIdentityService identityService;
     private readonly AppSettings appSettings;
 
-    public IdentityController(UserManager<User> userManager, IOptions<AppSettings> appSettings)
+    public IdentityController(
+        UserManager<User> userManager,
+        IIdentityService identityService,
+        IOptions<AppSettings> appSettings)
     {
         this.userManager = userManager;
+        this.identityService = identityService;
         this.appSettings = appSettings.Value;
     }
 
@@ -43,7 +44,7 @@ public class IdentityController : ApiController
 
     [HttpPost]
     [Route(nameof(Login))]
-    public async Task<ActionResult<string>> Login(LoginRequestModel model)
+    public async Task<ActionResult<LoginResponseModel>> Login(LoginRequestModel model)
     {
         var user = await this.userManager.FindByEmailAsync(model.Email);
         if (user == null)
@@ -58,17 +59,9 @@ public class IdentityController : ApiController
             return Unauthorized();
         }
 
-        var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(this.appSettings.Secret);
-        var tokenDescriptor = new SecurityTokenDescriptor
-        {
-            Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
-            Expires = DateTime.UtcNow.AddDays(7),
-            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-        };
-        var token = tokenHandler.CreateToken(tokenDescriptor);
-        var encriptedToken = tokenHandler.WriteToken(token);
+        var token = this.identityService.GenerateJwtToken(user.Id, user.Email, this.appSettings.Secret);
 
-        return encriptedToken;
+        return new LoginResponseModel(token);
+        
     }
 }
