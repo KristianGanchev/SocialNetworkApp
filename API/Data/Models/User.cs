@@ -1,7 +1,6 @@
-﻿using API.Data.Models.Base;
-using Microsoft.AspNetCore.Identity;
+﻿namespace API.Data.Models;
 
-namespace API.Data.Models;
+using API.Data.Models.Base;
 
 public class User : IdentityUser, IDeletableEntity
 {
@@ -18,5 +17,6 @@ public class User : IdentityUser, IDeletableEntity
     public string DeletedBy { get; set; }
 
     public bool IsDeleted { get; set; }
-   
+
+    public IEnumerable<Post> Posts { get; } = new HashSet<Post>();
 }

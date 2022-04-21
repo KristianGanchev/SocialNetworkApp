@@ -1,7 +1,7 @@
-﻿using API.Data;
+﻿namespace API.Infrastructure.Extensions;
+
 using Microsoft.EntityFrameworkCore;
 
-namespace API.Infrastructure.Extensions;
 
 public static class ApplicationBuilderExtensions
 {

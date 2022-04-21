@@ -1,10 +1,10 @@
-﻿using API.Data.Models;
+﻿namespace API.Data;
+
 using API.Data.Models.Base;
 using API.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace API.Data;
 
 public class SocialNetworkDbContext : IdentityDbContext<User>
 {
@@ -14,6 +14,19 @@ public class SocialNetworkDbContext : IdentityDbContext<User>
         : base(options)
     {
         this.currentUser = currentUser;
+    }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        builder
+            .Entity<Post>()
+            .HasQueryFilter(p => !p.IsDeleted)
+            .HasOne(p => p.Author)
+            .WithMany(a => a.Posts)
+            .HasForeignKey(p => p.AuthorId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        base.OnModelCreating(builder);
     }
 
     public override int SaveChanges(bool acceptAllChangesOnSuccess)

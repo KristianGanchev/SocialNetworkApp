@@ -1,7 +1,7 @@
-﻿using API.Infrastructure.Extensions;
-using System.Security.Claims;
+﻿namespace API.Infrastructure.Services;
 
-namespace API.Infrastructure.Services;
+using API.Infrastructure.Extensions;
+using System.Security.Claims;
 
 public class CurrentUserService : ICurrentUserService
 {

@@ -1,6 +1,4 @@
-using API.Infrastructure;
 using API.Infrastructure.Extensions;
-using API.Infrastructure.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 

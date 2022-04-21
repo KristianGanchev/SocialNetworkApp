@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace API.Features;
+﻿namespace API.Features;
 
 [ApiController]
 [Route("[controller]")]

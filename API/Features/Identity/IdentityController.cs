@@ -1,10 +1,7 @@
-﻿using API.Data.Models;
-using API.Features.Identity.Services;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
+﻿namespace API.Features.Identity;
 
-namespace API.Features.Identity;
+using API.Features.Identity.Services;
+
 
 public class IdentityController : ApiController
 {
@@ -59,9 +56,8 @@ public class IdentityController : ApiController
             return Unauthorized();
         }
 
-        var token = this.identityService.GenerateJwtToken(user.Id, user.Email, this.appSettings.Secret);
+        var token = this.identityService.GenerateJwtToken(user.Id, user.UserName, this.appSettings.Secret);
 
         return new LoginResponseModel(token);
-        
     }
 }
