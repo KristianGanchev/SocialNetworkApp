@@ -2,6 +2,7 @@
 using API.Data.Models;
 using API.Features.Identity.Services;
 using API.Infrastructure.Filters;
+using API.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -65,7 +66,8 @@ public static class ServiceCollectionsExtensions
 
     public static IServiceCollection AddApplicationServices(this IServiceCollection services) =>
         services
-            .AddTransient<IIdentityService, IdentityService>();
+            .AddTransient<IIdentityService, IdentityService>()
+            .AddScoped<ICurrentUserService, CurrentUserService>();
 
     public static void AddApiControllers(this IServiceCollection services) => 
         services.AddControllers(options => options.Filters.Add<ModelOrNotFoundActionFilter>());
