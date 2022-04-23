@@ -1,6 +1,6 @@
-﻿using System.Security.Claims;
+﻿namespace API.Infrastructure.Extensions;
 
-namespace API.Infrastructure.Extensions;
+using System.Security.Claims;
 
 public static class IdentityExtensions
 {

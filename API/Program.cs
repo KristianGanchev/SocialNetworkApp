@@ -9,7 +9,7 @@ builder.Services
     .AddIdentity()
     .AddJwtAuthentication(builder.Services.GetAppSettings(builder.Configuration))
     .AddApplicationServices()
-    .AddSwaggerGen()
+    .AddSwagger()
     .AddApiControllers();
 
 builder.Services.AddEndpointsApiExplorer();

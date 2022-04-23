@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
+﻿namespace API.Infrastructure.Filters;
 
-namespace API.Infrastructure.Filters;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 public class ModelOrNotFoundActionFilter : ActionFilterAttribute
 {

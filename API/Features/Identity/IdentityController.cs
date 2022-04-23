@@ -1,7 +1,7 @@
 ﻿namespace API.Features.Identity;
 
 using API.Features.Identity.Services;
-
+using Microsoft.AspNetCore.Authorization;
 
 public class IdentityController : ApiController
 {
@@ -21,6 +21,7 @@ public class IdentityController : ApiController
 
     [HttpPost]
     [Route(nameof(Register))]
+    [AllowAnonymous]
     public async Task<ActionResult> Register(RegiserRequestModel model)
     {
         var user = new User
@@ -41,6 +42,7 @@ public class IdentityController : ApiController
 
     [HttpPost]
     [Route(nameof(Login))]
+    [AllowAnonymous]
     public async Task<ActionResult<LoginResponseModel>> Login(LoginRequestModel model)
     {
         var user = await this.userManager.FindByEmailAsync(model.Email);

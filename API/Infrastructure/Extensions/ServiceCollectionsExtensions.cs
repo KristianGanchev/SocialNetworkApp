@@ -1,16 +1,14 @@
-﻿using API.Data;
-using API.Data.Models;
+﻿namespace API.Infrastructure.Extensions;
+
 using API.Features.Identity.Services;
 using API.Features.Posts.Services;
 using API.Infrastructure.Filters;
 using API.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Text;
 
-namespace API.Infrastructure.Extensions;
 
 public static class ServiceCollectionsExtensions
 {
@@ -71,6 +69,41 @@ public static class ServiceCollectionsExtensions
             .AddTransient<IIdentityService, IdentityService>()
             .AddTransient<IPostServices, PostService>();
 
-    public static void AddApiControllers(this IServiceCollection services) => 
+    public static void AddApiControllers(this IServiceCollection services) =>
         services.AddControllers(options => options.Filters.Add<ModelOrNotFoundActionFilter>());
+
+    public static IServiceCollection AddSwagger(this IServiceCollection services)
+    {
+        services.AddSwaggerGen(c =>
+        {
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "Social Network API", Version = "v1" });
+            c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                Description = "Jwt auth header",
+                Name = "Authorization",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.ApiKey,
+                Scheme = "Bearer"
+            });
+            c.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+             {
+                new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                    },
+                    Scheme = "oauth2",
+                    Name = "Bearer",
+                    In = ParameterLocation.Header
+                },
+                new List<string>()
+             }
+         });
+        });
+
+        return services;
+    }
 }

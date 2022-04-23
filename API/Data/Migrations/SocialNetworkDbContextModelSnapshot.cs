@@ -66,7 +66,7 @@ namespace API.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.ToTable("Post");
+                    b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("API.Data.Models.User", b =>
