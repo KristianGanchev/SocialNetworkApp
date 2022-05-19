@@ -1,0 +1,79 @@
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f2f5;
+}
+
+.container {
+  width: 70%;
+  height: 70%;
+  display: flex;
+}
+
+.left,
+.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logo {
+  font-size: 50px;
+  font-weight: 800;
+  color: #1775ee;
+  margin-bottom: 10px
+}
+
+.desc {
+  font-size: 24px;
+}
+
+.box {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.input {
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #808080;
+  font-size: 18px;
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.input:focus {
+  outline-color: #1775ee;
+}
+
+.btn, .btnLoginRegister {
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  background-color: #1775ee;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.accountText {
+  text-align: center;
+  color: #1775ee;
+  margin-bottom: 20px;
+}
+
+.btnLoginRegister {
+  background-color: #42b72a;
+  width: 60%;
+  align-self: center;
+}
