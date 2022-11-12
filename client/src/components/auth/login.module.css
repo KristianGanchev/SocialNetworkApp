@@ -47,6 +47,7 @@
   padding-left: 1.5rem;
 }
 
+
 .inputGroup input:focus,
 .inputGroup input:hover {
   border: 0.1rem solid #737577;
@@ -59,6 +60,10 @@
   font-size: 1.2rem;
 }
 
+.inputGroup input.redBorder {
+  border: 0.1rem solid #fb133a;
+}
+
 .inputGroup label {
   position: absolute;
   bottom: 1.5rem;
@@ -68,6 +73,11 @@
   font-size: 1.5rem;
   pointer-events: none;
   transition: all 0.3s ease;
+}
+
+.error {
+  color: #fb133a;
+  margin-left: 2rem;
 }
 
 .loginBtn {

@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { openLoginModal, openSignUpModal } from "../../redux/modal/modalSlice";
 import styles from "./header.module.css";
 
-const Header = () => {
+const Header : React.FC = () => {
   const dispatch = useDispatch();
 
   return (
