@@ -1,7 +1,10 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { closeLoginModal, openSignUpModal } from "../../redux/modal/modalSlice";
+import {
+  closeLoginModal,
+  openSignUpModal,
+} from "../../../redux/modal/modalSlice";
 import styles from "./login.module.css";
 
 interface Values {
@@ -9,7 +12,7 @@ interface Values {
   password: string;
 }
 
-const LogIn: React.FC = () => {
+const LogIn = () => {
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -20,7 +23,7 @@ const LogIn: React.FC = () => {
   const onSubmit = (values: Values) => {
     console.log(values);
   };
-  
+
   const validationSchema = Yup.object({
     email: Yup.string()
       .required("Email is required")

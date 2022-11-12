@@ -21,10 +21,19 @@
   position: relative;
 }
 
-.signup i {
+.signup i.close{
   position: absolute;
   top: 2rem;
   right: 2rem;
+  font-size: 2rem;
+  color: #878a8c;
+  cursor: pointer;
+}
+
+.signup i.back{
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
   font-size: 2rem;
   color: #878a8c;
   cursor: pointer;
