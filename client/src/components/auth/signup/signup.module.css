@@ -13,7 +13,7 @@
 }
 
 .signup {
-  background: #fff;
+  background: var(--white);
   width: 80vw;
   max-width: 40rem;
   border-radius: 1rem;
@@ -26,7 +26,7 @@
   top: 2rem;
   right: 2rem;
   font-size: 2rem;
-  color: #878a8c;
+  color: var(--dark-gray);
   cursor: pointer;
 }
 
@@ -35,7 +35,7 @@
   top: 2rem;
   left: 2rem;
   font-size: 2rem;
-  color: #878a8c;
+  color: var(--dark-gray);
   cursor: pointer;
 }
 
@@ -52,7 +52,7 @@
   font-size: 1.5rem;
   border-radius: 3rem;
   border: none;
-  background-color: #f6f7f8;
+  background-color: var(--light-gray);
   padding-left: 1.5rem;
 }
 
@@ -94,7 +94,7 @@
   width: 100%;
   border: none;
   cursor: pointer;
-  background-color: #dc4a14;
+  background-color: var(--orange);
   color: #fff;
   padding: 1rem 0;
   border-radius: 3rem;
@@ -102,7 +102,7 @@
 }
 
 .signupBtn:hover {
-  background-color: #ff7417;
+  background-color: var(--light-orange);
 }
 
 .signupContainer p {
@@ -110,7 +110,7 @@
 }
 
 .signupContainer span {
-  color: #0079d3;
+  color: var(--blue);
   font-weight: 700;
   text-decoration: underline;
   cursor: pointer;

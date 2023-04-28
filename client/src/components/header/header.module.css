@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fff;
+  background-color: var(--white);
 }
 
 .logo {
@@ -12,7 +12,7 @@
 }
 
 .logo i {
-  color: #ff4500;
+  color: var(--orange);
 }
 
 .search {
@@ -31,38 +31,46 @@
 .search input {
   width: 100%;
   padding: 1rem 1rem 1rem 4rem;
-  background-color: #F6F7F8;
+  background-color: var(--light-gray);
   border: .1rem solid #ebf1f8;
   border-radius: 3rem;
   font-size: 1.6rem;
 }
 
 .search input:hover {
-  border-color: #1484d6;
+  border-color: var(--blue);
 }
 
 .signupBtn {
-  color: #1484d6;
+  color: var(--blue);
   background: #fff;
-  border: .1rem solid #1484d6;
+  border: .1rem solid var(--blue);
   border-radius: 3rem;
   padding: .8rem 3rem;
   font-weight: 600;
   font-size: 1.4rem;
   margin-right: 2rem;
   cursor: pointer;
+}
+
+.signupBtn:hover {
+  background-color: #f1f7ff;
 }
 
 .loginBtn {
   color: #fff;
-  background: #1484d6;
-  border: .1rem solid #1484d6;
+  background: var(--blue);
+  border: .1rem solid var(--blue);
   border-radius: 3rem;
   padding: .8rem 3rem;
   font-weight: 600;
   font-size: 1.4rem;
   margin-right: 2rem;
   cursor: pointer;
+}
+
+.loginBtn:hover {
+  background-color: var(--light-blue);
 }
 
 @media(max-width: 700px) {
