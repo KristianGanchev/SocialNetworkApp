@@ -2,26 +2,38 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import {
-  closeLoginModal,
-  openSignUpModal,
+  toggleModal
 } from "../../../redux/modal/modalSlice";
 import styles from "./login.module.css";
+import useClickOutside from "../../../hooks/clickOutside";
+import { useLoginUserMutation } from "../../../services/authApi";
 
 interface Values {
   email: string;
   password: string;
 }
 
-const LogIn = () => {
+const LogIn : React.FC = () => {
+  const [loginUser, {isLoading, error}] = useLoginUserMutation();
   const dispatch = useDispatch();
+
+  const clickOutsideRef = useClickOutside(() => {
+    dispatch(toggleModal("login"))
+  });
 
   const initialValues = {
     email: "",
     password: "",
   };
 
-  const onSubmit = (values: Values) => {
-    console.log(values);
+  const onSubmit = async (values: Values) => {
+    try {
+      const data = await loginUser(values).unwrap();
+      console.log(data.token);
+      dispatch(toggleModal("login"));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const validationSchema = Yup.object({
@@ -32,11 +44,11 @@ const LogIn = () => {
   });
 
   return (
-    <div className={styles.loginContainer}>
-      <div className={styles.login}>
-        <h1>Log In</h1>
+    <div  className={styles.loginContainer}>
+      <div ref={clickOutsideRef} className={styles.login}>
+        <h1 className={styles.logo}>SocialNetwork</h1>
         <i
-          onClick={() => dispatch(closeLoginModal())}
+          onClick={() => dispatch(toggleModal("login"))}
           className="fa-solid fa-xmark"
         ></i>
         <Formik
@@ -76,6 +88,9 @@ const LogIn = () => {
                   <ErrorMessage name="password" component="p" />
                 </div>
               </div>
+              <div className={styles.error}>
+                  {error && <p>Invalid username or password</p>}
+                </div>
               <button type="submit" className={styles.loginBtn}>
                 Log In
               </button>
@@ -83,8 +98,8 @@ const LogIn = () => {
                 New to Social Network?{" "}
                 <span
                   onClick={() => {
-                    dispatch(closeLoginModal());
-                    dispatch(openSignUpModal());
+                    dispatch(toggleModal("login"));
+                    dispatch(toggleModal("signup"));
                   }}
                 >
                   Sign Up

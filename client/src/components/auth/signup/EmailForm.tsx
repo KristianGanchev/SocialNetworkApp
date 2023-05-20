@@ -24,7 +24,6 @@ const EmailForm: React.FC<EmailFormProps> = ({ next, ...data }) => {
 
   return (
     <>
-      <h1>Sign Up</h1>
       <Formik
         initialValues={data}
         onSubmit={onSubmit}

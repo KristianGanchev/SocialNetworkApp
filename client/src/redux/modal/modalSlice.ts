@@ -1,29 +1,35 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-   isLoginOpen: false,
-   isSignUpOpen: false,
+interface IModal {
+  id: string;
+  visible: boolean;
+}
+
+interface ModalState {
+  modals: IModal[];
+}
+
+const initialState: ModalState = {
+  modals: [
+    {id: "login", visible: false},
+    {id: "signup", visible: false},
+  ],
 };
 
 const modalSlice = createSlice({
-  name: "modal",
+  name: 'modals',
   initialState,
   reducers: {
-    openLoginModal: (state) => {
-      state.isLoginOpen = true;
-    },
-    closeLoginModal: (state) => {
-      state.isLoginOpen = false;
-    },
-    openSignUpModal: (state) => {
-      state.isSignUpOpen = true;
-    },
-    closeSignUpModal: (state) => {
-      state.isSignUpOpen = false;
+    toggleModal: (state, action) => {
+      const modal = state.modals.find((element) => element.id === action.payload);
+
+      if (modal) {
+        modal.visible = !modal.visible;
+      }
     },
   },
 });
 
-export const { openLoginModal, closeLoginModal, openSignUpModal,  closeSignUpModal} = modalSlice.actions;
+export const { toggleModal } = modalSlice.actions;
 
 export default modalSlice.reducer;

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import {
-  closeSignUpModal,
-  openLoginModal,
+  toggleModal
 } from "../../../redux/modal/modalSlice";
 import styles from "./signup.module.css";
 import EmailForm from "./EmailForm";
 import UserForm from "./UserForm";
+import useClickOutside from "../../../hooks/clickOutside";
 
 type FormData =  {
   email: string;
@@ -22,6 +22,11 @@ const INITIAL_DATA: FormData = {
 
 const SignUp: React.FC = () => {
   const dispatch = useDispatch();
+
+  const clickOutsideRef = useClickOutside(() => {
+    dispatch(toggleModal("signup"))
+  });
+
 
   const [data, setData] = useState(INITIAL_DATA);
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
@@ -44,26 +49,23 @@ const SignUp: React.FC = () => {
 
   const steps = [<EmailForm next={next} {...data}/>, <UserForm back={back} {...data}/>]
 
-  console.log(data);
-
-
   return (
     <div className={styles.signupContainer}>
-      <div className={styles.signup}>
+      <div ref={clickOutsideRef} className={styles.signup}>
         <i
           onClick={() => {
-            dispatch(closeSignUpModal());
+            dispatch(toggleModal("signup"));
           }}
           className={`fa-solid fa-xmark ${styles.close}`}
         ></i>
+        <h1 className={styles.logo}>SocialNetwork</h1>
         {steps[currentStepIndex]}
-
         <p>
           Already have an account?{" "}
           <span
             onClick={() => {
-              dispatch(closeSignUpModal());
-              dispatch(openLoginModal());
+              dispatch(toggleModal("signup"));
+              dispatch(toggleModal("login"));
             }}
           >
             Log In

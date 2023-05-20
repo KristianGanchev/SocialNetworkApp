@@ -22,7 +22,6 @@ public class PostController : ApiController
     {
         var userId = this.currentUser.GetId();
 
-
         if(userId == null)
         {
             return Unauthorized();

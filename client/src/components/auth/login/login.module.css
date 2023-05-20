@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Baille Simpson DEMO";
+  src: url("/public/fonts/Baillesimpsondemo-lg58V.otf");
+}
+
 .loginContainer {
   position: fixed;
   top: 0;
@@ -30,6 +35,15 @@
   cursor: pointer;
 }
 
+.logo {
+  font-family: "Baille Simpson DEMO", sans-serif;
+  font-size: 3rem;
+  letter-spacing: 0.2rem;
+  font-weight: 700;
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
 .inputGroup {
   height: 5rem;
   width: 100%;
@@ -40,11 +54,13 @@
 .inputGroup input {
   height: 100%;
   width: 100%;
+  color: var(--dark-gray);
   font-size: 1.5rem;
   border-radius: 3rem;
   border: none;
   background-color: var(--light-gray);
   padding-left: 1.5rem;
+  padding-top: 1rem;
 }
 
 
@@ -86,7 +102,7 @@
   width: 100%;
   border: none;
   cursor: pointer;
-  background-color: var(--orange);
+  background-color: var(--light-blue);
   color: var(--white);
   padding: 1rem 0;
   border-radius: 3rem;
@@ -94,7 +110,7 @@
 }
 
 .loginBtn:hover {
-  background-color: var(--light-orange);
+  background-color: var(--blue);
 }
 
 .loginContainer p {

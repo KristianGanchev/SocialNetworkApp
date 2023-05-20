@@ -1,5 +1,4 @@
-﻿
-namespace API.Features.Posts.Services;
+﻿namespace API.Features.Posts.Services;
 
 public class PostService : IPostServices
 {
@@ -55,7 +54,6 @@ public class PostService : IPostServices
 
         return true;
     }
-
   
     public async Task<Result> Delete(string id, string userId)
     {

@@ -6,10 +6,11 @@ import  modalReducer  from "./modal/modalSlice";
 export const store = configureStore({
   reducer: {
     [authApi.reducerPath]: authApi.reducer,
-    modal: modalReducer,
+    modals: modalReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(authApi.middleware),
+    devTools: true,
 });
 
 setupListeners(store.dispatch);

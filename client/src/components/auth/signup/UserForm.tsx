@@ -29,7 +29,6 @@ const UserForm: React.FC<UserFormProps> = ({ back, ...data }) => {
 
   return (
     <>
-      <h1>Create your username and password</h1>
       <Formik
         initialValues={data}
         onSubmit={onSubmit}
